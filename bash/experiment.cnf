@@ -1,0 +1,55 @@
+VM_AMI_1="ami-f95ef58a"  # AMI for Ubutnu server 14.04 in ireland
+VM_AMI_2="ami-0fb83963"  # AMI for Ubutnu server 14.04 in Sao Paolo
+VM_AMI_3="ami-6c14310f"	 # AMI for Ubutnu server 14.04 in Sidney
+VM_AMI_4="ami-26c43149"	 # AMI for Ubutnu server 14.04 in Frankfurt
+
+VM_AMI_5="ami-708ec403"  # AMI for the rerval experiment in IRELAND (eu-west-1)
+
+VM_REGION_1="eu-west-1"
+VM_REGION_2="sa-east-1"
+VM_REGION_3="ap-southeast-2"
+VM_REGION_4="eu-central-1"
+
+KEY_REGION_1="aws_ec2_jmartori_ws1"
+KEY_REGION_2="aws_${VM_REGION_2}_jmartori"
+
+REGION_SG_1="my-sg-experiment-1"
+REGION_SG_2="my-sg-rerval-open"
+
+VM_SIZE_1="t2.micro"
+VM_SIZE_2="t2.medium"
+
+MAX_RETRY=3
+
+###
+FN_TO_PACK="config.ini Snd.py Observer.py repl_client.py storm.py VectorClock.py Rcv.py server.py TCPServer.py client.py"
+PATH_RUN_SCRIPT="bash/run.sh"
+RUN_SCRIPT="run.sh"
+TAR_NAME="rervalCode.tar.gz"
+
+### The script only uses this configurations ###
+# This only works for launch.sh from geolaunch
+if [ ${#GEO_LAUNCH} -eq 0 ]; then
+	VM_REGION=$VM_REGION_1
+	VM_AMI=$VM_AMI_5
+else
+	# I'm sorry for this.
+	# You read only this from the launch.sh with the geolaunch from experiment.sh. 
+	# Then it passes to parameters to launch.sh that are this two. (read by the configuration file... thx bash)
+	VM_REGION=$1
+	VM_AMI=$2
+fi
+
+KEY_REGION=$KEY_REGION_1
+REGION_SG=$REGION_SG_1
+VM_SIZE=$VM_SIZE_1
+
+# Path in the computer for the KEY_REGION
+# With the laptop
+#SSH_KEY="$HOME/.ssh/keys/aws_ec2_jmartori_ws1.pem"
+
+# At the lab
+SSH_KEY="$HOME/.ssh/aws_ec2_jmartori_ws1.pem"
+
+SCRIPT_LAUNCH="bash/launch.sh"
+SCRIPT_DESTROY=f_destroy

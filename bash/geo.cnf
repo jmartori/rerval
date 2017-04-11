@@ -1,0 +1,13 @@
+#Original AMI, Region, RERVAL AMI
+# Issues with the VPC and the SG.
+#ami-c8580bdf, us-east-1, ami-d11f37c6
+#
+# Server
+ami-9c09f0f3, eu-central-1, ami-31d91c5e
+#
+#Clients
+ami-b7075dd2, us-east-2, ami-c16832a4
+ami-900b96fc, sa-east-1, ami-0c1e8160
+ami-1c2e887f, ap-southeast-1, ami-9c4deeff
+ami-bf3d00dc, ap-southeast-2, ami-18a7987b
+ami-f95ef58a, eu-west-1, ami-708ec403
